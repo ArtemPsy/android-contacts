@@ -27,7 +27,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
     private final AsyncListDiffer<ContactUi> differ = new AsyncListDiffer<>(
             new AdapterListUpdateCallback(this),
-            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback()).build()
+            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback<ContactUi>()).build()
 
     );
 
@@ -49,9 +49,6 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         return differ.getCurrentList().size();
     }
 
-    public void setItems(List<ContactUi> items) {
-        differ.submitList(items);
-    }
 
     public void setItems(List<ContactUi> items, @NonNull Runnable callback) {
         differ.submitList(items, callback);
